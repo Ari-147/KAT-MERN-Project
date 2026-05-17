@@ -1,0 +1,18 @@
+{
+  "outputDirectory": "frontend/dist",
+  "functions": {
+    "api/[...all].js": {
+      "maxDuration": 60
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/[...all].js"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}

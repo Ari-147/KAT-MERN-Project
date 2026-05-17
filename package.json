@@ -1,21 +1,38 @@
 {
   "name": "kat_project",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node backend/server",
-    "dev" : "nodemon backend/server"
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "install-all": "npm run install-backend && npm run install-frontend",
+    "build": "npm --prefix frontend install --include=dev && npm --prefix frontend run build",
+    "render-build": "npm --prefix backend install",
+    "render-start": "npm --prefix backend start",
+    "dev-backend": "cd backend && npm run dev",
+    "dev-frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev-backend\" \"npm run dev-frontend\"",
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd frontend && npm run preview",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "engines": {
+    "node": "20.x"
+  },
+  "description": "KAT Project - MERN Stack Travel Management System",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "mongoose": "^9.2.2"
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.2",
+    "serverless-http": "^3.2.0"
   }
 }
