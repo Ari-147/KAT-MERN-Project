@@ -1,16 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MosqueIcon from '@mui/icons-material/Mosque';
 import { Link, useNavigate } from 'react-router-dom';
+import companySettingsService from '../../services/companySettingsService'
 
 
 function Navbar() {
     const navigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [companyName, setCompanyName] = useState('Karwan-e-Arzoo-e-Tayba')
 
     const token = localStorage.getItem('token')
     const userRole = localStorage.getItem('userRole')
     const isLoggedIn = Boolean(token)
     const dashboardPath = userRole === 'admin' ? '/admin/dashboard' : '/customer/dashboard'
+
+    useEffect(() => {
+        const fetchCompanyName = async () => {
+            try {
+                const settings = await companySettingsService.getCompanySettings()
+                if (settings?.companyName) {
+                    setCompanyName(settings.companyName)
+                }
+            } catch (error) {
+                console.error('Error loading company settings:', error)
+            }
+        }
+        fetchCompanyName()
+    }, [])
 
     const handleLogout = () => {
         localStorage.removeItem('token')
@@ -35,7 +51,7 @@ function Navbar() {
                         <div className='bg-surface-dark rounded-xl w-10 h-10 flex justify-center items-center'>
                             <MosqueIcon className='text-secondary' />
                         </div>
-                        <h1 className='font-bold text-[20px] font-serif text-primary'>Karwan-e-Arzoo-e-Tayba</h1>
+                        <h1 className='font-bold text-[20px] font-serif text-primary'>{companyName}</h1>
                     </div>
 
                     <div className='hidden md:flex nav-links gap-7 cursor-pointer font-medium text-primary'>
