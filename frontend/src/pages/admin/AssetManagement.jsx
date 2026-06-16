@@ -172,6 +172,8 @@ function AssetManagement() {
                 <option value='hero'>Hero</option>
                 <option value='about'>About</option>
                 <option value='package'>Package</option>
+                <option value='login'>Login</option>
+                <option value='signup'>Signup</option>
                 <option value='profile'>Profile</option>
                 <option value='logo'>Logo</option>
                 <option value='other'>Other</option>
@@ -245,6 +247,8 @@ function AssetManagement() {
             >
               <option value='all'>All Types</option>
               <option value='hero'>Hero</option>
+              <option value='login'>Login</option>
+              <option value='signup'>Signup</option>
               <option value='about'>About</option>
               <option value='package'>Package</option>
               <option value='profile'>Profile</option>

@@ -20,8 +20,7 @@ const getAssetById = async (id) => {
 const uploadAsset = async (formData) => {
   const response = await axios.post(API_URL, formData, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-      'Content-Type': 'multipart/form-data'
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   })
   return response.data?.data || null

@@ -45,9 +45,13 @@ const uploadAsset = async (req, res) => {
       });
     }
 
-    // req.file.path is provided by multer with Cloudinary storage
-    const imageUrl = req.file.path;
-    const cloudinaryPublicId = req.file.filename || "";
+    let imageUrl = '';
+    let cloudinaryPublicId = '';
+
+    if (req.file) {
+      imageUrl = req.file.path || req.file.secure_url || req.file.url || '';
+      cloudinaryPublicId = req.file.public_id || req.file.filename || '';
+    }
 
     const newAsset = await Asset.create({
       name,

@@ -5,7 +5,7 @@ const assetSchema = new mongoose.Schema({
   description: { type: String, default: "" },
   assetType: {
     type: String,
-    enum: ["hero", "about", "package", "profile", "logo", "other"],
+    enum: ["hero", "login", "signup", "about", "package", "profile", "logo", "other"],
     required: true
   },
   imageUrl: { type: String, required: true },
